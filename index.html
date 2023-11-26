@@ -4,10 +4,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todos</title>
+    <!-- normalize -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/modern-normalize@1.1.0/modern-normalize.min.css" >
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;700&display=swap">
+    <!-- stylesheet -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <h1>Todos</h1>
+    <header id="main-header">
+        <div class="container">
+            <h1>ToDo List</h1>
+            <form action="" id="todo-form">
+                <input type="text" name="task-name" placeholder="e.g: Go shopping" autofocus/>
+                <button type="submit">Add ToDo</button>
+            </form>
+        </div>
+    </header>
+    
+    <section>
+        <div class="container" id="main-content">
+            <ul class="stats">
+                <li>
+                    <span>Remaining</span>
+                    <span id="remaining-tasks">0</span>
+                </li>
+                <li>
+                    <span>Completed</span>
+                    <span id="completed-stats">0</span>
+                </li>
+                <li>
+                    <span>Total</span>
+                    <span id="total-tasks">0</span>
+                </li>
+            </ul>
+
+            <ul class="todos">
+                <li>
+                    <div>
+                        <input type="checkbox" name="tasks" id="1">
+                        <span>Task 1</span>
+                    </div>
+
+                    <button title="Remove todo" class="remove-task">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M17.25 17.25L6.75 6.75"
+                            stroke="#A4D0E3" stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                            <path d="M17.25 6.75L6.75 17.25"
+                            stroke="#A4D0E3" stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                            </svg>
+                    </button>
+                </li>
+                <li>
+                    <div>
+                        <input type="checkbox" name="tasks" id="1">
+                        <span>Task 2</span>
+                    </div>
+
+                    <button title="Remove todo" class="remove-task">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M17.25 17.25L6.75 6.75"
+                            stroke="#A4D0E3" stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                            <path d="M17.25 6.75L6.75 17.25"
+                            stroke="#A4D0E3" stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                            </svg>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>
+                <small>Made by </small><a href="#" target="_blank">Patrick Bahati</a>
+            </p>
+        </div>
+    </footer>
 
     <script src="javascripts/script.js"></script>
 </body>

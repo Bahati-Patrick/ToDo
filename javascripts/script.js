@@ -85,16 +85,7 @@ function createTask(task){
         </div>
 
         <button title="Remove the ${task.name}" class="remove-task">
-            <svg viewBox="0 0 24 24" fill="none">
-                <path d="M17.25 17.25L6.75 6.75"
-                stroke="#62b67f" stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"/>
-                <path d="M17.25 6.75L6.75 17.25"
-                stroke="#62b67f" stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"/>
-            </svg>
+            <span>Delete</span>
         </button>
     `;
 

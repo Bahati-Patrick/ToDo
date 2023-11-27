@@ -3,7 +3,7 @@ const todoForm = document.querySelector('#todo-form');
 const todoList = document.querySelector('.todos');
 const totalTasks = document.querySelector('#total-tasks');
 const completedTasks = document.querySelector('#completed-tasks');
-const remainingTasks = document.querySelector('#remaining-Tasks');
+const remainingTasks = document.querySelector('#remaining-tasks');
 const mainInput = document.querySelector('#todo-form input');
 
 let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
@@ -72,4 +72,17 @@ function createTask(task){
     taskEl.innerHTML = taskElMarkup;
 
     todoList.appendChild(taskEl);
+
+    countTasks()
+}
+
+// count tasks
+function countTasks() {
+    const completedTasksArray = tasks.filter((task) => {
+        task.isCompleted === true;
+    });
+
+    totalTasks.textContent = tasks.length;
+    completedTasks.textContent = completedTasksArray.length
+    remainingTasks.textContent = tasks.length - completedTasksArray.length;
 }

@@ -51,6 +51,22 @@ todoList.addEventListener('click', (e) => {
 });
 
 
+// get task's id and update
+todoList.addEventListener('input', (e) => { 
+    const taskId = e.target.closest('li').id;
+
+    updateTask(taskId, e.target);
+});
+
+// exit edit mode and prvent new line on enter
+todoList.addEventListener('keydown', (e) => {
+    if(e.keyCode === 13) {
+        e.preventDefault();
+
+        e.target.blur();
+    }
+});
+
 
 // create task
 function createTask(task){
@@ -65,7 +81,7 @@ function createTask(task){
     const taskElMarkup = `
         <div>
             <input type="checkbox" name="tasks" id="${task.id}" ${task.isCompleted ? 'checked' : ''}>
-            <span ${task.isCompleted ? 'contenteditable' : ''}>${task.name}</span>
+            <span ${task.isCompleted ? '': 'contenteditable'}>${task.name}</span>
         </div>
 
         <button title="Remove the ${task.name}" class="remove-task">
@@ -108,4 +124,31 @@ function removeTask(taskId){
     document.getElementById(taskId).remove();
 
     countTasks();
+}
+
+// update task
+function updateTask(taskId, el) {
+    const task = tasks.find((task) => task.id === parseInt(taskId));
+
+    if(el.hasAttribute('contenteditable')) {
+        task.name = el.textContent
+    } else {
+        const span = el.nextElementSibling;
+        const parent = el.closest('li');
+
+        task.isCompleted = !task.isCompleted;
+
+        if (task.isCompleted) {
+            span.removeAttribute('contenteditable');
+            parent.classList.add('complete');
+        } else {
+            span.setAttribute('contenteditable', 'true');
+            parent.classList.remove('complete');
+        }
+
+    }
+
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+
+    countTasks()
 }

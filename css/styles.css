@@ -3,7 +3,7 @@
     --body-font: 'Figtree', sans-serif;
     --color-body: #e5f8ec;
     --color-header: #3D5656;
-    --color-text: var(-color-header);
+    --color-text: var(--color-header);
     --color-text-muted: #b0e6c4;
     --color-input:#4a6868;
     --color-input-lighter: #79a0a0;
@@ -12,8 +12,8 @@
     --color-secondary-lighter: #c3ad88;
     --color-tertiary: #68B984;
     --color-text-badge: #e7fef0;
-    --color-disabled: #d0f7df;
-    --color-text-disabled: #CFFDE1;
+    --color-disabled: #cbe7d4;
+    --color-text-disabled: #62b67f;
     --global-border-radius: 6px;
     --global-transition: all 25 ease-in-out;
 }
@@ -149,7 +149,102 @@ small,
     font-weight: 700;
 }
 
-/* todo list */
+/* to do list */
+.todos {
+    margin-bottom: 4rem;
+}
+
+.todos li {
+    background-color: white;
+    border-radius: var(--global-border-radius);
+    margin-bottom: 1rem;
+    padding: 1.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.todos li div {
+    display: flex;
+    align-items: center;
+    gap: .75rem
+}
+
+.todos li.complete {
+    background-color: var(--color-disabled);
+    text-decoration: line-through;
+    color: var(--color-text-disabled);
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    background-color: transparent;
+    margin: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 2px solid var(--color-text);
+    border-radius: 100%;
+    display: grid;
+    place-content: center;
+    transition: var(--global-transition);
+}
+
+input[type="checkbox"]::before {
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' width='12' height='10' viewBox='0 0 18 18'%0Astyle='fill:%234a6868;'%3E%3Cpath d='M 19.28125 5.28125 L 9 15.5625 L 4.71875 11.28125 L 3.28125 12.71875 L 8.28125 17.71875 L 9 18.40625 L 9.71875 17.71875 L 20.71875 6.71875 Z'%3E%3C/path%3E%3C/svg%3E");
+    transform: scale(0);
+    transition: var(--global-transition);
+}
+
+input[type="checkbox"]:checked {
+    background-color: var(--color-text-disabled);
+    border-color: var(--color-text-disabled);
+}
+
+input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
+
+.todos li button {
+    border: 0;
+    padding: .25rem;
+    display: grid;
+    place-content: center;
+    background-color: transparent;
+}
+
+.todos li button svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.todoa li button svg path {
+    transition: var(--global-transition);
+}
+
+.todos li button:hover svg path {
+    stroke: var(--color-text);
+}
+
+.todos li button:active svg {
+    transform: scale(.8);
+}
+
+.todos li span {
+    padding: 2px;
+    border-radius: var(--global-border-radius);
+    transition: var(--global-transition);
+}
+
+.todos li span:focus {
+    background-color: var(--color-body);
+    outline: none;
+}
+
+.todos li span[contenteditable]:hover {
+    background-color: var(--color-body);
+}
+
+
 
 /* 768px screen and above */
 @media screen and (min-width: 768px) { 
@@ -166,6 +261,7 @@ small,
     #todo-form input {
         flex-grow: 1
     }
+
 }
 
 

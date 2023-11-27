@@ -39,7 +39,20 @@ todoForm.addEventListener('submit', (e) => {
     mainInput.focus();
 });
 
+// get task's id and delete
+todoList.addEventListener('click', (e) => {
+    if(e.target.classList.contains('remove-task') || 
+    e.target.parentElement.classList.contains('remove-task') ||
+    e.target.parentElement.parentElement.classList.contains('remove-task')){
+        const taskId = e.target.closest('li').id;
 
+        removeTask(taskId);
+    }
+});
+
+
+
+// create task
 function createTask(task){
     const taskEl = document.createElement('li');
 
@@ -78,11 +91,21 @@ function createTask(task){
 
 // count tasks
 function countTasks() {
-    const completedTasksArray = tasks.filter((task) => {
-        task.isCompleted === true;
-    });
+    const completedTasksArray = tasks.filter(
+        (task) => task.isCompleted === true );
 
     totalTasks.textContent = tasks.length;
     completedTasks.textContent = completedTasksArray.length
     remainingTasks.textContent = tasks.length - completedTasksArray.length;
+}
+
+// remove task
+function removeTask(taskId){
+    tasks = tasks.filter((task) => task.id !== parseInt(taskId));
+
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+
+    document.getElementById(taskId).remove();
+
+    countTasks();
 }

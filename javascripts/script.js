@@ -4,6 +4,7 @@ const todoList = document.querySelector('.todos');
 const totalTasks = document.querySelector('#total-tasks');
 const completedTasks = document.querySelector('#completed-tasks');
 const remainingTasks = document.querySelector('#remaining-tasks');
+const importantTasks = document.querySelector('#important-tasks');
 const mainInput = document.querySelector('#todo-form input');
 
 let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
@@ -27,7 +28,8 @@ todoForm.addEventListener('submit', (e) => {
     const task = {
         id: new Date().getTime(),
         name: inputValue,
-        isCompleted: false
+        isCompleted: false,
+        isImportant: false
     }
 
     tasks.push(task);
@@ -68,6 +70,7 @@ todoList.addEventListener('keydown', (e) => {
 });
 
 
+
 // create task
 function createTask(task){
     const taskEl = document.createElement('li');
@@ -83,10 +86,14 @@ function createTask(task){
             <input type="checkbox" name="tasks" id="${task.id}" ${task.isCompleted ? 'checked' : ''}>
             <span ${task.isCompleted ? '': 'contenteditable'}>${task.name}</span>
         </div>
-
-        <button title="Remove the ${task.name}" class="remove-task">
-            <span>Delete</span>
-        </button>
+        <div>
+            <button title="Mark as Important" class="mark-task">
+                <span>Mark</span>
+            </button>
+            <button title="Remove the ${task.name}" class="remove-task">
+                <span>Delete</span>
+            </button>
+        </div>
     `;
 
     taskEl.innerHTML = taskElMarkup;
@@ -95,19 +102,29 @@ function createTask(task){
 
     todoList.insertBefore(taskEl, referenceTask);
 
-    // todoList.appendChild(taskEl);
-
     countTasks()
+
+    // get task id and mark it as important
+    const markButton = taskEl.querySelector('.mark-task');
+    markButton.addEventListener('click', (e)=>{
+        // const taskId = e.target.closest('li').id;
+        markAsImportant(task.id)
+    }); 
 }
 
 // count tasks
 function countTasks() {
     const completedTasksArray = tasks.filter(
         (task) => task.isCompleted === true );
+    
+    const importantTasksArray = tasks.filter(
+        (task) => task.isImportant === true);
 
     totalTasks.textContent = tasks.length;
+    importantTasks.textContent = importantTasksArray.length;
     completedTasks.textContent = completedTasksArray.length
     remainingTasks.textContent = tasks.length - completedTasksArray.length;
+
 }
 
 // remove task
@@ -135,7 +152,7 @@ function updateTask(taskId, el) {
 
         if (task.isCompleted) {
             span.removeAttribute('contenteditable');
-            parent.classList.add('complete');
+            parent.classList.add('complete');           
         } else {
             span.setAttribute('contenteditable', 'true');
             parent.classList.remove('complete');
@@ -146,4 +163,28 @@ function updateTask(taskId, el) {
     localStorage.setItem('tasks', JSON.stringify(tasks));
 
     countTasks()
+}
+
+// mark task as important
+function markAsImportant(taskId) {
+    const task = tasks.find((task) => task.id === parseInt(taskId));
+    task.isImportant = !task.isImportant;
+
+    const taskEl = document.getElementById(taskId);
+    const taskElMarkButtonSpan = taskEl.childNodes[3].childNodes[1].childNodes[1];
+    const taskElMarkButton = taskEl.childNodes[3].childNodes[1];
+
+    if (task.isImportant) {
+        taskEl.classList.add('important');
+        taskElMarkButtonSpan.textContent = 'Unmark'
+        taskElMarkButton.setAttribute('title','Unmark as Important');
+    } else {
+        taskEl.classList.remove('important');
+        taskElMarkButtonSpan.textContent = 'Mark'
+        taskElMarkButton.setAttribute('title','Mark as Important');
+    }
+
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+
+    countTasks();
 }

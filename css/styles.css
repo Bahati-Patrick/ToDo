@@ -224,7 +224,7 @@ input[type="checkbox"]:checked::before {
     transition: var(--global-transition);
 }
 
-.todoa li button span {
+.todos li button span {
     transition: var(--global-transition);
 }
 
@@ -253,6 +253,12 @@ input[type="checkbox"]:checked::before {
 
 .todos li span[contenteditable]:hover {
     background-color: var(--color-body);
+}
+
+.todos li.important {
+    border-left: 3px solid var(--color-secondary-lighter);
+    font-weight: bold;
+    transition: var(--global-transition);
 }
 
 

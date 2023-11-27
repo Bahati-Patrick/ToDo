@@ -10,7 +10,7 @@ let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
 // get all tasks
 if (localStorage.getItem('tasks')) {
-    tasks.map((task) => {
+    tasks.sort((a,b) => a.id - b.id ).map((task) => {
         createTask(task);
     });
 }
@@ -91,7 +91,11 @@ function createTask(task){
 
     taskEl.innerHTML = taskElMarkup;
 
-    todoList.appendChild(taskEl);
+    const referenceTask = todoList.firstChild;
+
+    todoList.insertBefore(taskEl, referenceTask);
+
+    // todoList.appendChild(taskEl);
 
     countTasks()
 }

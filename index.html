@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <!-- font awesomne -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- stylesheet -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -27,7 +29,7 @@
     
     <section>
         <div class="container" id="main-content">
-            <ul class="stats">
+            <ul class="stats">                
                 <li>
                     <span>Remaining</span>
                     <span id="remaining-tasks">0</span>
@@ -44,6 +46,25 @@
                     <span>Total</span>
                     <span id="total-tasks">0</span>
                 </li>
+                <li>                    
+                    <span class="dropbtn">Sort</span>
+                    <span>
+                        <i class="fas fa-caret-down"></i>
+                    </span>
+                    <div class="dropdown-content">
+                        <a href="#" class="sort_link" id="sort-by-importance">Importance </a>
+                        <a href="#" class="sort_link" id="sort-by-ascending">a - z</a>
+                        <a href="#" class="sort_link" id="sort-by-descending">z - a</a>
+                        <a href="#" class="sort_link" id="sort-by-old-to-new">Old to New</a>
+                        <a href="#" class="sort_link" id="sort-by-new-to-old">New to Old</a>
+                        <a href="#" class="sort_link" id="sort-by-completion">Completed</a>                        
+                    </div>                    
+                </li> 
+                <li>
+                    <button title="Clear sorts" class="clear_sort_btn" id="clear-sorts">                            
+                        Clear <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </li>               
             </ul>
 
             <ul class="todos"></ul>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta developer="bahatipatrick05@gmail.com">
+    <title>Todos</title>
+    
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/modern-normalize@1.1.0/modern-normalize.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header id="main-header">
+        <div class="container">
+            <h1>ToDo List</h1>
+            <form action="" id="todo-form">
+                <input type="text" name="task-name" placeholder="e.g: Go shopping" autofocus/>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </header>
+    
+    <section>
+        <div class="container" id="main-content">
+            <ul class="stats">                
+                <li>
+                    <span>Remaining</span>
+                    <span id="remaining-tasks">0</span>
+                </li>
+                <li>
+                    <span>Completed</span>
+                    <span id="completed-tasks">0</span>
+                </li>
+                <li>
+                    <span>Important</span>
+                    <span id="important-tasks">0</span>
+                </li>
+                <li>
+                    <span>Total</span>
+                    <span id="total-tasks">0</span>
+                </li>
+                <li>                    
+                    <span class="dropbtn">Sort</span>
+                    <span>
+                        <i class="fas fa-caret-down"></i>
+                    </span>
+                    <div class="dropdown-content">
+                        <a href="#" class="sort_link" id="sort-by-importance">Importance </a>
+                        <a href="#" class="sort_link" id="sort-by-ascending">a - z</a>
+                        <a href="#" class="sort_link" id="sort-by-descending">z - a</a>
+                        <a href="#" class="sort_link" id="sort-by-old-to-new">Old to New</a>
+                        <a href="#" class="sort_link" id="sort-by-new-to-old">New to Old</a>
+                        <a href="#" class="sort_link" id="sort-by-completion">Completed</a>                        
+                    </div>                    
+                </li> 
+                <li>                    
+                    <span class="dropbtn">Filter</span>
+                    <span>
+                        <i class="fas fa-filter"></i>
+                    </span>
+                    <div class="dropdown-content filter">
+                        <div>No categories...</div>                     
+                    </div>                    
+                </li>
+                <li>
+                    <button title="Clear sorts / filters" class="clear_sort_btn" id="clear-sorts">                            
+                        Clear <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </li>               
+            </ul>
+
+            <div id="overlay"></div>
+
+            <div id="categoryModal">
+                <div class="categorody_modal_body">
+                    <input type="text" id="newCategory" placeholder="Enter new category">
+                    <button id="saveCategoryBtn">Save</button>
+                </div>  
+                <div class="existing_categories">
+                    <span>Existing Categories:</span>
+                    <ul id="categoryList">
+                    </ul>
+                </div>     
+                <div class="cancel_category_modal_btn">
+                    <button id="cancelCategoryBtn">Cancel</button>
+                </div>
+            </div>
+
+            <ul class="todos"></ul>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>
+                <small>Made by </small><a href="#" target="_blank">Patrick Bahati</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="javascripts/script.js"></script>
+</body>
+</html>

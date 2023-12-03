@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Category Popup</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    #categoryModal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+    }
+
+    #overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
+
+    #categoryList {
+      list-style: none;
+      padding: 0;
+    }
+
+    #categoryList li {
+      margin-bottom: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<button id="addCategoryBtn">Add Category</button>
+
+<div id="overlay"></div>
+
+<div id="categoryModal">
+  <label for="newCategory">New Category:</label>
+  <input type="text" id="newCategory" placeholder="Enter new category">
+  
+  <h3>Existing Categories:</h3>
+  <ul id="categoryList"></ul>
+
+  <button id="saveCategoryBtn">Save</button>
+  <button id="cancelCategoryBtn">Cancel</button>
+</div>
+
+<script>
+  document.getElementById('addCategoryBtn').addEventListener('click', function () {
+    document.getElementById('overlay').style.display = 'block';
+    document.getElementById('categoryModal').style.display = 'block';
+
+    // Populate existing categories in the list
+    populateCategoryList();
+  });
+
+  document.getElementById('cancelCategoryBtn').addEventListener('click', function () {
+    document.getElementById('overlay').style.display = 'none';
+    document.getElementById('categoryModal').style.display = 'none';
+  });
+
+  document.getElementById('saveCategoryBtn').addEventListener('click', function () {
+    // Get the selected category from the input field or the list
+    var newCategory = document.getElementById('newCategory').value;
+
+    // Add the new category to the task or handle as needed
+    // Here, you might want to associate the category with a task or save it to local storage
+
+    // For demonstration, let's just log the selected category
+    console.log('Selected Category:', newCategory);
+
+    // Clear the input field
+    document.getElementById('newCategory').value = '';
+
+    // Close the modal
+    document.getElementById('overlay').style.display = 'none';
+    document.getElementById('categoryModal').style.display = 'none';
+  });
+
+  function populateCategoryList() {
+    // Fetch existing categories from wherever they are stored (e.g., local storage)
+    var existingCategories = ['Work', 'Personal', 'Shopping', 'Miscellaneous'];
+
+    var categoryList = document.getElementById('categoryList');
+
+    // Clear existing list items
+    categoryList.innerHTML = '';
+
+    // Populate the list with existing categories
+    existingCategories.forEach(function (category) {
+      var listItem = document.createElement('li');
+      listItem.textContent = category;
+
+      // Add click event listener to select the category from the list
+      listItem.addEventListener('click', function () {
+        // Set the selected category in the input field
+        document.getElementById('newCategory').value = category;
+      });
+
+      categoryList.appendChild(listItem);
+    });
+  }
+</script>
+
+</body>
+</html>

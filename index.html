@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta developer="bahatipatrick05@gmail.com">
     <title>Todos</title>
     <!-- normalize -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/modern-normalize@1.1.0/modern-normalize.min.css" >
@@ -60,12 +61,38 @@
                         <a href="#" class="sort_link" id="sort-by-completion">Completed</a>                        
                     </div>                    
                 </li> 
+                <li>                    
+                    <span class="dropbtn">Filter</span>
+                    <span>
+                        <i class="fas fa-filter"></i>
+                    </span>
+                    <div class="dropdown-content filter">
+                        <div>No categories...</div>                     
+                    </div>                    
+                </li>
                 <li>
-                    <button title="Clear sorts" class="clear_sort_btn" id="clear-sorts">                            
+                    <button title="Clear sorts / filters" class="clear_sort_btn" id="clear-sorts">                            
                         Clear <i class="fa-solid fa-xmark"></i>
                     </button>
                 </li>               
             </ul>
+
+            <div id="overlay"></div>
+
+            <div id="categoryModal">
+                <div class="categorody_modal_body">
+                    <input type="text" id="newCategory" placeholder="Enter new category">
+                    <button id="saveCategoryBtn">Save</button>
+                </div>  
+                <div class="existing_categories">
+                    <span>Existing Categories:</span>
+                    <ul id="categoryList">
+                    </ul>
+                </div>     
+                <div class="cancel_category_modal_btn">
+                    <button id="cancelCategoryBtn">Cancel</button>
+                </div>
+            </div>
 
             <ul class="todos"></ul>
         </div>

@@ -30,6 +30,7 @@ function getAllTasks() {
 
 getAllTasks();
 
+// prepare to do object
 todoForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -89,7 +90,6 @@ todoList.addEventListener('keydown', (e) => {
         e.target.blur();
     }
 });
-
 
 
 // create task
@@ -353,7 +353,7 @@ const addCategoryButton = document.querySelector('.add_category')
 const saveCategoryButton = document.getElementById('saveCategoryBtn')
 const cancelCategoryPopup = document.getElementById('cancelCategoryBtn')
 
-
+// dismiss new category modal
 cancelCategoryPopup.addEventListener('click', function () {
     document.getElementById('overlay').style.display = 'none';
     document.getElementById('categoryModal').style.display = 'none';
@@ -361,6 +361,7 @@ cancelCategoryPopup.addEventListener('click', function () {
     selectedTasks.pop(1);
 });
 
+// create a category
 saveCategoryButton.addEventListener('click',() => {
     const newCategory = document.getElementById('newCategory').value.trim();
 
@@ -432,7 +433,6 @@ function populateAllCategories() {
 populateAllCategories();
 
 // show filtered tasks
-
 function showFilteredTasks(selectedFilter){
     const filteredTasks = [];
     tasks.forEach((task) => {
